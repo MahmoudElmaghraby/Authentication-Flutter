@@ -1,16 +1,22 @@
+import 'package:auth_mobile_app/constants/colors.dart';
+import 'package:auth_mobile_app/constants/padding.dart';
+import 'package:auth_mobile_app/screens/login_screen.dart';
+import 'package:auth_mobile_app/screens/profile_screen.dart';
+import 'package:auth_mobile_app/shared/components.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
-  LoginScreen({Key? key}) : super(key: key);
+class RegisterScreen extends StatefulWidget {
+  RegisterScreen({Key? key}) : super(key: key);
 
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   bool myObscureText = true;
   bool checkBoxValue = false;
   final TextEditingController _usernameController = TextEditingController();
+  final TextEditingController _emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -58,28 +64,21 @@ class _LoginScreenState extends State<LoginScreen> {
           const SizedBox(height: 25),
           const Center(
             child: Text(
-              'Login into your account',
+              'Create a new account',
               style: TextStyle(
                 fontSize: 20,
                 fontWeight: FontWeight.w700,
-                color: Color(0xFF2A2B2E),
+                color: BOLD_TEXT_COLOR,
               ),
             ),
           ),
-          const SizedBox(height: 22),
+          const SizedBox(height: p_22),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 24),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
-                  'Username',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: Color(0xFF808194),
-                  ),
-                ),
+                textTitle(myText: 'Username'),
                 const SizedBox(height: 8),
                 TextFormField(
                   controller: _usernameController,
@@ -90,20 +89,20 @@ class _LoginScreenState extends State<LoginScreen> {
                       },
                       icon: const Icon(
                         Icons.highlight_remove,
-                        color: Color(0xff808194),
+                        color: GRAY_COLOR,
                       ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: const BorderSide(
                         width: 0.5,
-                        color: Color(0xFF808194),
+                        color: GRAY_COLOR,
                       ),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: const BorderSide(
                         width: 0.5,
-                        color: Color(0xFF808194),
+                        color: GRAY_COLOR,
                       ),
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -114,15 +113,44 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 22),
-                const Text(
-                  'Password',
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: Color(0xFF808194),
+                const SizedBox(height: p_22),
+                textTitle(myText: 'Email'),
+                const SizedBox(height: 8),
+                TextFormField(
+                  controller: _emailController,
+                  decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        _emailController.clear();
+                      },
+                      icon: const Icon(
+                        Icons.highlight_remove,
+                        color: GRAY_COLOR,
+                      ),
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        width: 0.5,
+                        color: GRAY_COLOR,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: const BorderSide(
+                        width: 0.5,
+                        color: GRAY_COLOR,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    hintText: 'Enter your email',
+                    hintStyle: const TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w400,
+                    ),
                   ),
                 ),
+                const SizedBox(height: p_22),
+                textTitle(myText: 'Password'),
                 const SizedBox(height: 8),
                 TextFormField(
                   obscureText: myObscureText,
@@ -136,24 +164,24 @@ class _LoginScreenState extends State<LoginScreen> {
                       icon: myObscureText
                           ? const Icon(
                               Icons.visibility,
-                              color: Color(0xff808194),
+                              color: GRAY_COLOR,
                             )
                           : const Icon(
                               Icons.visibility_off,
-                              color: Color(0xff808194),
+                              color: GRAY_COLOR,
                             ),
                     ),
                     enabledBorder: OutlineInputBorder(
                       borderSide: const BorderSide(
                         width: 0.5,
-                        color: Color(0xFF808194),
+                        color: GRAY_COLOR,
                       ),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     focusedBorder: OutlineInputBorder(
                       borderSide: const BorderSide(
                         width: 0.5,
-                        color: Color(0xFF808194),
+                        color: GRAY_COLOR,
                       ),
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -164,7 +192,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(height: 22),
+                const SizedBox(height: p_22),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -186,32 +214,33 @@ class _LoginScreenState extends State<LoginScreen> {
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,
-                        color: Color(0xFF2A2B2E),
+                        color: BOLD_TEXT_COLOR, //0xFF2A2B2E
                       ),
                     ),
                     const Spacer(),
                     TextButton(
                       onPressed: () {},
                       child: const Text(
-                        'Forget password',
+                        'Have a problem?',
                         style: TextStyle(
                           decoration: TextDecoration.underline,
-                          decorationColor: Color(0xff4F90F0),
+                          decorationColor: UNDERLINE_TEXT_COLOR,
                           fontSize: 14,
                           fontWeight: FontWeight.w700,
-                          color: Color(0xFF2A2B2E),
+                          color: BOLD_TEXT_COLOR,
                         ),
                       ),
                     ),
                   ],
                 ),
-                const SizedBox(height: 22),
                 SizedBox(
                   width: fullWidth,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                     // navigateTo(context, ProfileScreen());
+                    },
                     child: const Text(
-                      'Log in',
+                      'Register',
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w700,
@@ -222,23 +251,26 @@ class _LoginScreenState extends State<LoginScreen> {
                 Row(
                   children: [
                     const Text(
-                      'Don\'t have an account?',
+                      'Already have an account?',
                       style: TextStyle(
                         fontSize: 14,
                         fontWeight: FontWeight.w400,
-                        color: Color(0xFF2A2B2E),
+                        color: BOLD_TEXT_COLOR, //0xFF2A2B2E
                       ),
                     ),
                     TextButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        navigateAndFinish(context, LoginScreen());
+                      },
                       child: const Text(
-                        'Register',
+                        'Login',
                         style: TextStyle(
                           decoration: TextDecoration.underline,
-                          decorationColor: Color(0xff4F90F0),
+                          decorationColor: UNDERLINE_TEXT_COLOR,
+                          //0xff4F90F0
                           fontSize: 14,
                           fontWeight: FontWeight.w700,
-                          color: Color(0xFF2A2B2E),
+                          color: BOLD_TEXT_COLOR,
                         ),
                       ),
                     ),
